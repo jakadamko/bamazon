@@ -1,7 +1,12 @@
+// Dependencies
+// mysql 
+// =============================================================
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
-
+// Sets up the connection to mySQL
+// used to create a connection to the specified destination. 
+// =============================================================
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -16,8 +21,8 @@ connection.connect(function (err) {
     start();
 });
 
-
-
+// Created function which uses connection.query an npm mySQL package
+// =============================================================
 function start() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
@@ -25,7 +30,7 @@ function start() {
             console.log("productId: " + res[i].item_id + "\nProduct_name: " + res[i].product_name + "\nprice: $" + res[i].price + "\n--------------------");
         }
 
-
+=====
         inquirer
             .prompt([
                 {
